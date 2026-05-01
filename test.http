@@ -1,0 +1,16 @@
+### Tester la route de base
+GET http://localhost:5000/
+
+### Récupérer tous les projets
+GET http://localhost:5000/api/projects
+
+### Ajouter un nouveau projet
+POST http://localhost:5000/api/projects
+Content-Type: application/json
+
+{
+    "title": "Mon Premier Projet",
+    "description": "Ceci est un projet test envoyé depuis mon code",
+    "technologies": ["Node.js", "Express", "MongoDB"],
+    "githubLink": "https://github.com/ton-profil"
+}
