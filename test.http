@@ -1,16 +1,51 @@
-### Tester la route de base
-GET http://localhost:5000/
+### Variables de configuration
+@hostname = localhost
+@port = 5000
+@baseUrl = http://{{hostname}}:{{port}}
+@projectId = 69f506a2dc0596b28b20e554
 
-### Récupérer tous les projets
-GET http://localhost:5000/api/projects
+############################################################
+### 1. TEST DE CONNEXION
+### Vérifie que le serveur Express tourne bien
+############################################################
+GET {{baseUrl}}/
 
-### Ajouter un nouveau projet
-POST http://localhost:5000/api/projects
+###
+
+############################################################
+### 2. RÉCUPÉRER TOUS LES PROJETS
+### Utile pour vérifier ce qui est en base sur MongoDB Atlas
+############################################################
+GET {{baseUrl}}/api/projects
+
+###
+
+############################################################
+### 3. AJOUTER UN PROJET (POST)
+### Exemple avec ton projet phare pour Dakar 2026
+############################################################
+POST {{baseUrl}}/api/projects
 Content-Type: application/json
 
 {
-    "title": "Mon Premier Projet",
-    "description": "Ceci est un projet test envoyé depuis mon code",
-    "technologies": ["Node.js", "Express", "MongoDB"],
-    "githubLink": "https://github.com/ton-profil"
+    "title": "JOJ Ops Hub",
+    "description": "Plateforme de gestion opérationnelle unifiée pour les Jeux Olympiques de la Jeunesse Dakar 2026.",
+    "technologies": ["Node.js", "Express", "MongoDB", "AWS"],
+    "githubLink": "https://github.com/ton-profil/joj-ops-hub"
 }
+
+###
+
+############################################################
+### 4. VOIR LES DÉTAILS D'UN PROJET (GET by ID)
+### Utilise l'identifiant que tu as récupéré
+############################################################
+GET {{baseUrl}}/api/projects/{{projectId}}
+
+###
+
+############################################################
+### 5. SUPPRIMER UN PROJET (DELETE)
+### Pour nettoyer ton portfolio des tests
+############################################################
+DELETE {{baseUrl}}/api/projects/{{projectId}}
